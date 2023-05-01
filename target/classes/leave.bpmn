@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_060psys" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.10.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.19.0">
-  <bpmn:process id="leave-application" name="Leave-applciation" isExecutable="true" camunda:historyTimeToLive="24">
+  <bpmn:process id="leave-application" name="Leave-applciation" isExecutable="true" camunda:historyTimeToLive="1">
     <bpmn:startEvent id="StartEvent_1" name="Apply Leave">
       <bpmn:outgoing>Flow_1peajij</bpmn:outgoing>
     </bpmn:startEvent>
@@ -13,7 +13,7 @@
     <bpmn:userTask id="manager-approval" name="Manager Approval" camunda:assignee="manager">
       <bpmn:extensionElements>
         <camunda:formData>
-          <camunda:formField id="approvemanager" label="approve" type="boolean" defaultValue="false" />
+          <camunda:formField id="managerapproval" label="approve" type="boolean" defaultValue="false" />
         </camunda:formData>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_1q9lhci</bpmn:incoming>
