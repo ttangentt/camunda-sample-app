@@ -93,6 +93,18 @@
   <artifactId>camunda-bpm-mail-core</artifactId>
   <version>1.0.0</version>
 </dependency>
+<!-- GraalVM JavaScript Engine -->
+	<dependency>
+	  <groupId>org.graalvm.js</groupId>
+	  <artifactId>js</artifactId>
+	  <version>21.3.3</version>
+	</dependency>
+<!-- GraalVM JavaScript ScriptEngine -->
+	<dependency>
+	  <groupId>org.graalvm.js</groupId>
+	  <artifactId>js-scriptengine</artifactId>
+	  <version>21.3.3</version>
+	</dependency>
 
 
   </dependencies>

@@ -20,15 +20,29 @@
       <bpmn:outgoing>Flow_1vvulmj</bpmn:outgoing>
     </bpmn:userTask>
     <bpmn:sequenceFlow id="Flow_1vvulmj" sourceRef="age" targetRef="send-task" />
-    <bpmn:sendTask id="send-task" name="send-task" camunda:class="com.dexalite.leave.workflow.delegates.SendTask">
-      <bpmn:extensionElements />
+    <bpmn:sendTask id="send-task" name="send-task" camunda:class="com.dexalite.leave.workflow.delegates.WelcomeTask">
       <bpmn:incoming>Flow_1vvulmj</bpmn:incoming>
-      <bpmn:outgoing>Flow_0mjsegw</bpmn:outgoing>
+      <bpmn:outgoing>Flow_1dippwq</bpmn:outgoing>
     </bpmn:sendTask>
-    <bpmn:endEvent id="Event_0vcv0b4">
-      <bpmn:incoming>Flow_0mjsegw</bpmn:incoming>
+    <bpmn:sequenceFlow id="Flow_1dippwq" sourceRef="send-task" targetRef="script-task" />
+    <bpmn:scriptTask id="script-task" name="script-task" scriptFormat="js" camunda:resultVariable="result">
+      <bpmn:incoming>Flow_1dippwq</bpmn:incoming>
+      <bpmn:outgoing>Flow_021s8f7</bpmn:outgoing>
+      <bpmn:script>print age;
+if(age&gt;=18){
+result='adult';
+}else{
+result='child';</bpmn:script>
+    </bpmn:scriptTask>
+    <bpmn:sequenceFlow id="Flow_021s8f7" sourceRef="script-task" targetRef="age-print" />
+    <bpmn:serviceTask id="age-print" name="age-print" camunda:class="com.dexalite.leave.workflow.delegates.AgePrint">
+      <bpmn:incoming>Flow_021s8f7</bpmn:incoming>
+      <bpmn:outgoing>Flow_0adc5mr</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:endEvent id="Event_0p4l02u">
+      <bpmn:incoming>Flow_0adc5mr</bpmn:incoming>
     </bpmn:endEvent>
-    <bpmn:sequenceFlow id="Flow_0mjsegw" sourceRef="send-task" targetRef="Event_0vcv0b4" />
+    <bpmn:sequenceFlow id="Flow_0adc5mr" sourceRef="age-print" targetRef="Event_0p4l02u" />
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="task-sample">
@@ -46,8 +60,16 @@
       <bpmndi:BPMNShape id="Activity_0crtwam_di" bpmnElement="send-task">
         <dc:Bounds x="590" y="77" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_0vcv0b4_di" bpmnElement="Event_0vcv0b4">
-        <dc:Bounds x="752" y="99" width="36" height="36" />
+      <bpmndi:BPMNShape id="Activity_0dj2ogo_di" bpmnElement="script-task">
+        <dc:Bounds x="750" y="77" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0xg1omr_di" bpmnElement="age-print">
+        <dc:Bounds x="910" y="77" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0p4l02u_di" bpmnElement="Event_0p4l02u">
+        <dc:Bounds x="1072" y="99" width="36" height="36" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_0gv5mng_di" bpmnElement="Flow_0gv5mng">
         <di:waypoint x="215" y="117" />
@@ -61,9 +83,17 @@
         <di:waypoint x="530" y="117" />
         <di:waypoint x="590" y="117" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_0mjsegw_di" bpmnElement="Flow_0mjsegw">
+      <bpmndi:BPMNEdge id="Flow_1dippwq_di" bpmnElement="Flow_1dippwq">
         <di:waypoint x="690" y="117" />
-        <di:waypoint x="752" y="117" />
+        <di:waypoint x="750" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_021s8f7_di" bpmnElement="Flow_021s8f7">
+        <di:waypoint x="850" y="117" />
+        <di:waypoint x="910" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0adc5mr_di" bpmnElement="Flow_0adc5mr">
+        <di:waypoint x="1010" y="117" />
+        <di:waypoint x="1072" y="117" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
