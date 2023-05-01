@@ -10,10 +10,6 @@
       <bpmn:outgoing>Flow_0kuaxku</bpmn:outgoing>
     </bpmn:serviceTask>
     <bpmn:sequenceFlow id="Flow_0kuaxku" sourceRef="welcome-task" targetRef="age" />
-    <bpmn:endEvent id="Event_1ci3imt">
-      <bpmn:incoming>Flow_1tmy34c</bpmn:incoming>
-    </bpmn:endEvent>
-    <bpmn:sequenceFlow id="Flow_1tmy34c" sourceRef="age" targetRef="Event_1ci3imt" />
     <bpmn:userTask id="age" name="age">
       <bpmn:extensionElements>
         <camunda:formData>
@@ -21,8 +17,18 @@
         </camunda:formData>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_0kuaxku</bpmn:incoming>
-      <bpmn:outgoing>Flow_1tmy34c</bpmn:outgoing>
+      <bpmn:outgoing>Flow_1vvulmj</bpmn:outgoing>
     </bpmn:userTask>
+    <bpmn:sequenceFlow id="Flow_1vvulmj" sourceRef="age" targetRef="send-task" />
+    <bpmn:sendTask id="send-task" name="send-task" camunda:class="com.dexalite.leave.workflow.delegates.SendTask">
+      <bpmn:extensionElements />
+      <bpmn:incoming>Flow_1vvulmj</bpmn:incoming>
+      <bpmn:outgoing>Flow_0mjsegw</bpmn:outgoing>
+    </bpmn:sendTask>
+    <bpmn:endEvent id="Event_0vcv0b4">
+      <bpmn:incoming>Flow_0mjsegw</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_0mjsegw" sourceRef="send-task" targetRef="Event_0vcv0b4" />
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="task-sample">
@@ -33,12 +39,15 @@
         <dc:Bounds x="270" y="77" width="100" height="80" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_1ci3imt_di" bpmnElement="Event_1ci3imt">
-        <dc:Bounds x="592" y="99" width="36" height="36" />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_16f998a_di" bpmnElement="age">
         <dc:Bounds x="430" y="77" width="100" height="80" />
         <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0crtwam_di" bpmnElement="send-task">
+        <dc:Bounds x="590" y="77" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0vcv0b4_di" bpmnElement="Event_0vcv0b4">
+        <dc:Bounds x="752" y="99" width="36" height="36" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_0gv5mng_di" bpmnElement="Flow_0gv5mng">
         <di:waypoint x="215" y="117" />
@@ -48,9 +57,13 @@
         <di:waypoint x="370" y="117" />
         <di:waypoint x="430" y="117" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_1tmy34c_di" bpmnElement="Flow_1tmy34c">
+      <bpmndi:BPMNEdge id="Flow_1vvulmj_di" bpmnElement="Flow_1vvulmj">
         <di:waypoint x="530" y="117" />
-        <di:waypoint x="592" y="117" />
+        <di:waypoint x="590" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0mjsegw_di" bpmnElement="Flow_0mjsegw">
+        <di:waypoint x="690" y="117" />
+        <di:waypoint x="752" y="117" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
