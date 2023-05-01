@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/2.0" xmlns:camunda="http://camunda.org/schema/1.0/dmn" id="decision-age-check" name="age-check" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="5.10.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.19.0">
+  <decision id="age-check" name="age-check">
+    <decisionTable id="DecisionTable_19cs4km">
+      <input id="Input_1" label="age-input" biodi:width="217" camunda:inputVariable="age">
+        <inputExpression id="InputExpression_1" typeRef="integer" expressionLanguage="javascript">
+          <text></text>
+        </inputExpression>
+      </input>
+      <output id="Output_1" name="child-or-adult" typeRef="string" />
+      <rule id="DecisionRule_04k3w7i">
+        <inputEntry id="UnaryTests_13gakoh">
+          <text>&lt; 18</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_16kirkf">
+          <text>"You are a child !!!"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0fcynb1">
+        <inputEntry id="UnaryTests_1r13om8">
+          <text>&gt;= 18</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_08bxyxn">
+          <text>"You are an adult !!!"</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram>
+      <dmndi:DMNShape dmnElementRef="age-check">
+        <dc:Bounds height="80" width="180" x="160" y="80" />
+      </dmndi:DMNShape>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>
