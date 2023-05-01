@@ -7,4 +7,20 @@ spring:
     url: jdbc:mysql://localhost:3306/camunda
     username: root
     password: password
-    driver-class-name: com.mysql.cj.jdbc.Driver 
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  mail:
+    default-encoding: UTF-8
+    host: sandbox.smtp.mailtrap.io
+    port: 2525
+    username: 6602848e5122bf
+    password: 1e9daaf72757c8
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+    protocol: smtp
+    test-connection: true
+    
+

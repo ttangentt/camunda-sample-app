@@ -25,14 +25,15 @@
       <bpmn:outgoing>Flow_1dippwq</bpmn:outgoing>
     </bpmn:sendTask>
     <bpmn:sequenceFlow id="Flow_1dippwq" sourceRef="send-task" targetRef="script-task" />
-    <bpmn:scriptTask id="script-task" name="script-task" scriptFormat="js" camunda:resultVariable="result">
+    <bpmn:scriptTask id="script-task" name="script-task" scriptFormat="javascript" camunda:resultVariable="result">
       <bpmn:incoming>Flow_1dippwq</bpmn:incoming>
       <bpmn:outgoing>Flow_021s8f7</bpmn:outgoing>
-      <bpmn:script>print age;
+      <bpmn:script>print(age);
 if(age&gt;=18){
 result='adult';
 }else{
-result='child';</bpmn:script>
+result='child';
+}</bpmn:script>
     </bpmn:scriptTask>
     <bpmn:sequenceFlow id="Flow_021s8f7" sourceRef="script-task" targetRef="age-print" />
     <bpmn:serviceTask id="age-print" name="age-print" camunda:class="com.dexalite.leave.workflow.delegates.AgePrint">
